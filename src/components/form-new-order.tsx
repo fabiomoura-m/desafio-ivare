@@ -6,6 +6,7 @@ import AddressInput from '@/components/address-input';
 import { useAppDispatch } from '@/store/store';
 import { addOrder } from '@/store/order-slice';
 import { generateRandomId } from '@/utils/generate-random-id';
+import { ORIGIN_ADDRESS, PREPARATION_TIME } from '@/constants';
 
 type FormNewOrderProps = {
     onClose: () => void;
@@ -44,7 +45,7 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
 
         directionsService.route(
             {
-                origin: 'Av. Rondon Pacheco, 1800 - Tabajaras, Uberlândia - MG, 38408-343',
+                origin: ORIGIN_ADDRESS,
                 destination,
                 travelMode: google.maps.TravelMode.DRIVING
             },
@@ -61,7 +62,7 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
                                 complement: inputComplementRef.current?.value,
                                 description: inputDescriptionRef.current?.value,
                                 distance,
-                                timeDelivery: time + 30 * 60
+                                timeDelivery: time + PREPARATION_TIME
                             })
                         );
 
