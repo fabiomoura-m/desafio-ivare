@@ -67,3 +67,8 @@
       @apply bg-background text-foreground;
     }
   }
+
+  .pac-container {
+    z-index: 10000 !important;
+    pointer-events: auto;
+  }

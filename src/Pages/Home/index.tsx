@@ -10,9 +10,11 @@ import {
 } from '@/components/ui/dialog';
 import { useState } from 'react';
 import FormNewOrder from '@/components/form-new-order';
+import useGoogleMapsLoader from '@/hooks/use-googlemaps-loader';
 
 const Home = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const { isLoaded } = useGoogleMapsLoader();
 
     return (
         <>
@@ -53,7 +55,11 @@ const Home = () => {
                                         um novo pedido
                                     </DialogDescription>
                                 </DialogHeader>
-                                <FormNewOrder />
+                                {isLoaded && (
+                                    <FormNewOrder
+                                        onClose={() => setIsDialogOpen(false)}
+                                    />
+                                )}
                             </DialogContent>
                         </Dialog>
 
