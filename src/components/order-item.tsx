@@ -18,15 +18,18 @@ const OrderItem = ({ order }: OrderItemProps) => {
             className=" rounded-xl p-6 border border-gray-200 shadow-md"
             key={order.id}
         >
-            <div className="flex justify-between items-center text-sm lg:text-base">
-                <p>
-                    <span className="font-semibold">Pedido:</span> {order.id}
-                </p>
-                <Timer
-                    id={String(order.id)}
-                    initialSeconds={order.timeDelivery}
-                />
-                <CollapsibleTrigger asChild>
+            <div className="flex items-center justify-between text-sm lg:text-base">
+                <div className='flex flex-col md:flex-row justify-between w-full'>
+                    <p>
+                        <span className="font-semibold">Pedido:</span>{' '}
+                        {order.id}
+                    </p>
+                    <Timer
+                        id={String(order.id)}
+                        initialSeconds={order.timeDelivery}
+                    />
+                </div>
+                <CollapsibleTrigger asChild className='md:ml-10'>
                     <Button variant="ghost" size="sm" className="w-9 p-0">
                         <ChevronsUpDown className="h-4 w-4" />
                         <span className="sr-only">Toggle</span>
