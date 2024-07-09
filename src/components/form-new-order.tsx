@@ -3,6 +3,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import FormError from '@/components/form-error';
 import AddressInput from '@/components/address-input';
+import { useAppDispatch } from '@/store/store';
+import { addOrder } from '@/store/order-slice';
+import { generateRandomId } from '@/utils/generate-random-id';
 
 type FormNewOrderProps = {
     onClose: () => void;
@@ -18,6 +21,8 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
 
     const inputComplementRef = useRef<HTMLInputElement>(null);
     const inputDescriptionRef = useRef<HTMLInputElement>(null);
+
+    const dispatch = useAppDispatch();
 
     const onLoad = useCallback((ref: google.maps.places.Autocomplete) => {
         setAutocomplete(ref);
@@ -49,7 +54,16 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
                     const time = result.routes[0].legs[0].duration?.value;
 
                     if (distance && time) {
-                        console.log(distance, time);
+                        dispatch(
+                            addOrder({
+                                id: generateRandomId(),
+                                address: destination as string,
+                                complement: inputComplementRef.current?.value,
+                                description: inputDescriptionRef.current?.value,
+                                distance,
+                                timeDelivery: time + 30 * 60
+                            })
+                        );
 
                         onClose();
                     }
