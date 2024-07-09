@@ -4,7 +4,7 @@ import Footer from '@/components/footer';
 
 export default function RootLayout() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-dvh h-full">
             <Header />
             <Outlet />
             <Footer />
