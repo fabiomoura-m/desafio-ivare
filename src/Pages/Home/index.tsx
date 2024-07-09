@@ -9,6 +9,7 @@ import {
     DialogTrigger
 } from '@/components/ui/dialog';
 import { useState } from 'react';
+import FormNewOrder from '@/components/form-new-order';
 
 const Home = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -52,7 +53,7 @@ const Home = () => {
                                         um novo pedido
                                     </DialogDescription>
                                 </DialogHeader>
-                                <p>Formulario</p>
+                                <FormNewOrder />
                             </DialogContent>
                         </Dialog>
 
