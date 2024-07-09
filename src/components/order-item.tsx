@@ -6,6 +6,7 @@ import {
     CollapsibleTrigger
 } from '@/components/ui/collapsible';
 import { Button } from '@/components/ui/button';
+import Timer from '@/components/timer';
 
 type OrderItemProps = {
     order: Order;
@@ -21,7 +22,10 @@ const OrderItem = ({ order }: OrderItemProps) => {
                 <p>
                     <span className="font-semibold">Pedido:</span> {order.id}
                 </p>
-                Tempo entrega: {order.timeDelivery}
+                <Timer
+                    id={String(order.id)}
+                    initialSeconds={order.timeDelivery}
+                />
                 <CollapsibleTrigger asChild>
                     <Button variant="ghost" size="sm" className="w-9 p-0">
                         <ChevronsUpDown className="h-4 w-4" />

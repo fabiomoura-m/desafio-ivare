@@ -2,7 +2,7 @@ import { useAppSelector } from '@/store/store';
 import OrderItem from '@/components/order-item';
 
 const OrderList = () => {
-    const orders = useAppSelector(state => state.orders);
+    const orders = useAppSelector(state => state.orderReducer.orders);
 
     return (
         <div className="mt-6 flex flex-col gap-y-6">
