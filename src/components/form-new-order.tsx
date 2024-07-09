@@ -7,6 +7,8 @@ import { useAppDispatch } from '@/store/store';
 import { addOrder } from '@/store/order-slice';
 import { generateRandomId } from '@/utils/generate-random-id';
 import { ORIGIN_ADDRESS, PREPARATION_TIME } from '@/constants';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 type FormNewOrderProps = {
     onClose: () => void;
@@ -24,6 +26,7 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
     const inputDescriptionRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onLoad = useCallback((ref: google.maps.places.Autocomplete) => {
         setAutocomplete(ref);
@@ -67,6 +70,14 @@ const FormNewOrder = ({ onClose }: FormNewOrderProps) => {
                         );
 
                         onClose();
+                        toast('Pedido cadastrado com sucesso', {
+                            description:
+                                'Você pode acompanhá-lo na tela de pedidos.',
+                            action: {
+                                label: 'Pedidos',
+                                onClick: () => navigate('/pedidos')
+                            }
+                        });
                     }
                 }
                 if (status === google.maps.DirectionsStatus.NOT_FOUND) {
